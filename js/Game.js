@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // Game.js
 
 // eslint-disable-next-line no-var
