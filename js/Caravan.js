@@ -6,11 +6,11 @@ var OregonH = OregonH || {};
 // constants
 OregonH.WEIGHT_PER_OX = 20;
 OregonH.WEIGHT_PER_PERSON = 2;
-OregonH.FOOD_WEIGHT = 0.6;
+OregonH.SOYLENT_WEIGHT = 0.6;
 OregonH.FIREPOWER_WEIGHT = 5;
 OregonH.GAME_SPEED = 800;
 OregonH.DAY_PER_STEP = 0.2;
-OregonH.FOOD_PER_PERSON = 0.02;
+OregonH.SOYLENT_PER_PERSON = 0.02;
 OregonH.FULL_SPEED = 5;
 OregonH.SLOW_SPEED = 3;
 OregonH.FINAL_DISTANCE = 1000;
@@ -24,9 +24,9 @@ OregonH.Caravan = {};
 OregonH.Caravan.init = function init(stats) {
   this.day = stats.day;
   this.distance = stats.distance;
-  this.crew = stats.crew;
-  this.food = stats.food;
-  this.oxen = stats.oxen;
+  this.devs = stats.devs;
+  this.soylent = stats.soylent;
+  this.servers = stats.servers;
   this.money = stats.money;
   this.firepower = stats.firepower;
 };
@@ -38,9 +38,9 @@ OregonH.Game.init = function init() {
   this.caravan.init({
     day: 0,
     distance: 0,
-    crew: 30,
-    food: 80,
-    oxen: 2,
+    devs: 30,
+    soylent: 80,
+    servers: 2,
     money: 300,
     firepower: 2,
   });
@@ -51,17 +51,17 @@ OregonH.Game.init();
 
 // update weight and capacity
 OregonH.Caravan.updateWeight = function updateWeight() {
-  let droppedFood = 0;
+  let droppedSoylent = 0;
   let droppedGuns = 0;
 
   // how much can the caravan carry
-  this.capacity = this.oxen * OregonH.WEIGHT_PER_OX + this.crew * OregonH.WEIGHT_PER_PERSON;
+  this.capacity = this.servers * OregonH.WEIGHT_PER_OX + this.devs * OregonH.WEIGHT_PER_PERSON;
 
   // how much weight do we currently have
-  this.weight = this.food * OregonH.FOOD_WEIGHT + this.firepower * OregonH.FIREPOWER_WEIGHT;
+  this.weight = this.soylent * OregonH.SOYLENT_WEIGHT + this.firepower * OregonH.FIREPOWER_WEIGHT;
 
   // drop things behind if it's too much weight
-  // assume guns get dropped before food
+  // assume guns get dropped before soylent
   while (this.firepower && this.capacity <= this.weight) {
     this.firepower -= 1;
     this.weight -= OregonH.FIREPOWER_WEIGHT;
@@ -69,17 +69,17 @@ OregonH.Caravan.updateWeight = function updateWeight() {
   }
 
   if (droppedGuns) {
-    this.ui.notify(`Left ${droppedGuns} guns behind`, 'negative');
+    this.ui.notify(`Left ${droppedGuns} guns behind because of excess weight`, 'negative');
   }
 
-  while (this.food && this.capacity <= this.weight) {
-    this.food -= 1;
-    this.weight -= OregonH.FOOD_WEIGHT;
-    droppedFood += 1;
+  while (this.soylent && this.capacity <= this.weight) {
+    this.soylent -= 1;
+    this.weight -= OregonH.SOYLENT_WEIGHT;
+    droppedSoylent += 1;
   }
 
-  if (droppedFood) {
-    this.ui.notify(`Left ${droppedFood} food provisions behind`, 'negative');
+  if (droppedSoylent) {
+    this.ui.notify(`Left ${droppedSoylent} soylent provisions behind`, 'negative');
   }
 };
 
@@ -91,11 +91,11 @@ OregonH.Caravan.updateDistance = function updateDistance() {
   this.distance += speed;
 };
 
-// food consumption
-OregonH.Caravan.consumeFood = function consumeFood() {
-  this.food -= this.crew * OregonH.FOOD_PER_PERSON;
+// soylent consumption
+OregonH.Caravan.consumeSoylent = function consumeSoylent() {
+  this.soylent -= this.devs * OregonH.SOYLENT_PER_PERSON;
 
-  if (this.food < 0) {
-    this.food = 0;
+  if (this.soylent < 0) {
+    this.soylent = 0;
   }
 };

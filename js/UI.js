@@ -15,16 +15,16 @@ OregonH.UI.notify = function notify(message, type) {
 OregonH.UI.refreshStats = function refreshStats() {
   // Destructure some objects for easy access
   const {
-    day, distance, crew, oxen, food, money, firepower, weight, capacity,
+    day, distance, devs, servers, soylent, money, firepower, weight, capacity,
   } = this.caravan;
   const { ceil, floor } = Math;
 
   // modify the dom
   document.getElementById('stat-day').innerHTML = `${ceil(day)}`; // Math.ceil(this.caravan.day);
   document.getElementById('stat-distance').innerHTML = `${floor(distance)}`;
-  document.getElementById('stat-crew').innerHTML = `${crew}`;
-  document.getElementById('stat-oxen').innerHTML = `${oxen}`;
-  document.getElementById('stat-food').innerHTML = `${ceil(food)}`;
+  document.getElementById('stat-devs').innerHTML = `${devs}`;
+  document.getElementById('stat-servers').innerHTML = `${servers}`;
+  document.getElementById('stat-soylent').innerHTML = `${ceil(soylent)}`;
   document.getElementById('stat-money').innerHTML = `${money}`;
   document.getElementById('stat-firepower').innerHTML = `${firepower}`;
   document.getElementById('stat-weight').innerHTML = `${ceil(weight)}/${capacity}`;
@@ -67,13 +67,13 @@ OregonH.UI.fight = function fight() {
   const damage = Math.ceil(Math.max(0, firepower * 2 * Math.random() - this.caravan.firepower));
 
   // check there are survivors
-  if (damage < this.caravan.crew) {
-    this.caravan.crew -= damage;
+  if (damage < this.caravan.devs) {
+    this.caravan.devs -= damage;
     this.caravan.money += gold;
     this.notify(`${damage} people were killed fighting`, 'negative');
     this.notify(`Found $ ${gold}`, 'gold');
   } else {
-    this.caravan.crew = 0;
+    this.caravan.devs = 0;
     this.notify('Everybody died in the fight', 'negative');
   }
 
@@ -92,11 +92,11 @@ OregonH.UI.runaway = function runaway() {
   const damage = Math.ceil(Math.max(0, firepower * Math.random() / 2));
 
   // check there are survivors
-  if (damage < this.caravan.crew) {
-    this.caravan.crew -= damage;
+  if (damage < this.caravan.devs) {
+    this.caravan.devs -= damage;
     this.notify(`${damage} people were killed running`, 'negative');
   } else {
-    this.caravan.crew = 0;
+    this.caravan.devs = 0;
     this.notify('Everybody died running away', 'negative');
   }
 
