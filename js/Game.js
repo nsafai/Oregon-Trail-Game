@@ -8,7 +8,7 @@ var OregonH = OregonH || {};
 OregonH.WEIGHT_PER_OX = 20;
 OregonH.WEIGHT_PER_PERSON = 2;
 OregonH.SOYLENT_WEIGHT = 0.6;
-OregonH.FIREPOWER_WEIGHT = 5;
+OregonH.HACKERBOUNTIES_WEIGHT = 5;
 OregonH.GAME_SPEED = 800;
 OregonH.DAY_PER_STEP = 0.2;
 OregonH.SOYLENT_PER_PERSON = 0.02;
@@ -16,7 +16,7 @@ OregonH.FULL_SPEED = 5;
 OregonH.SLOW_SPEED = 3;
 OregonH.FINAL_DISTANCE = 1000;
 OregonH.EVENT_PROBABILITY = 0.15;
-OregonH.ENEMY_FIREPOWER_AVG = 5;
+OregonH.ENEMY_HACKERBOUNTIES_AVG = 5;
 OregonH.ENEMY_GOLD_AVG = 50;
 
 OregonH.Game = {};
@@ -38,7 +38,7 @@ OregonH.Game.init = function init() {
     soylent: 80,
     servers: 2,
     money: 300,
-    firepower: 2,
+    hackerbounties: 2,
   });
 
   // pass references
@@ -62,7 +62,7 @@ OregonH.Game.init = function init() {
 OregonH.Game.startJourney = function startJourney() {
   this.gameActive = true;
   this.previousTime = null;
-  this.ui.notify('A great adventure begins', 'positive');
+  this.ui.notify('A tiny company starts up with $ from Sand Hill Rd', 'positive');
 
   this.step();
 };

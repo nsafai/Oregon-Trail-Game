@@ -7,7 +7,7 @@ var OregonH = OregonH || {};
 OregonH.WEIGHT_PER_OX = 20;
 OregonH.WEIGHT_PER_PERSON = 2;
 OregonH.SOYLENT_WEIGHT = 0.6;
-OregonH.FIREPOWER_WEIGHT = 5;
+OregonH.HACKERBOUNTIES_WEIGHT = 5;
 OregonH.GAME_SPEED = 800;
 OregonH.DAY_PER_STEP = 0.2;
 OregonH.SOYLENT_PER_PERSON = 0.02;
@@ -15,7 +15,7 @@ OregonH.FULL_SPEED = 5;
 OregonH.SLOW_SPEED = 3;
 OregonH.FINAL_DISTANCE = 1000;
 OregonH.EVENT_PROBABILITY = 0.15;
-OregonH.ENEMY_FIREPOWER_AVG = 5;
+OregonH.ENEMY_HACKERBOUNTIES_AVG = 5;
 OregonH.ENEMY_GOLD_AVG = 50;
 
 OregonH.Game = {};
@@ -28,7 +28,7 @@ OregonH.Caravan.init = function init(stats) {
   this.soylent = stats.soylent;
   this.servers = stats.servers;
   this.money = stats.money;
-  this.firepower = stats.firepower;
+  this.hackerbounties = stats.hackerbounties;
 };
 
 // initiate the game
@@ -42,7 +42,7 @@ OregonH.Game.init = function init() {
     soylent: 80,
     servers: 2,
     money: 300,
-    firepower: 2,
+    hackerbounties: 2,
   });
 };
 
@@ -52,24 +52,24 @@ OregonH.Game.init();
 // update weight and capacity
 OregonH.Caravan.updateWeight = function updateWeight() {
   let droppedSoylent = 0;
-  let droppedGuns = 0;
+  let droppedBounties = 0;
 
   // how much can the caravan carry
   this.capacity = this.servers * OregonH.WEIGHT_PER_OX + this.devs * OregonH.WEIGHT_PER_PERSON;
 
   // how much weight do we currently have
-  this.weight = this.soylent * OregonH.SOYLENT_WEIGHT + this.firepower * OregonH.FIREPOWER_WEIGHT;
+  this.weight = this.soylent * OregonH.SOYLENT_WEIGHT + this.hackerbounties * OregonH.HACKERBOUNTIES_WEIGHT;
 
   // drop things behind if it's too much weight
-  // assume guns get dropped before soylent
-  while (this.firepower && this.capacity <= this.weight) {
-    this.firepower -= 1;
-    this.weight -= OregonH.FIREPOWER_WEIGHT;
-    droppedGuns += 1;
+  // assume hackerbounties get dropped before soylent
+  while (this.hackerbounties && this.capacity <= this.weight) {
+    this.hackerbounties -= 1;
+    this.weight -= OregonH.HACKERBOUNTIES_WEIGHT;
+    droppedBounties += 1;
   }
 
-  if (droppedGuns) {
-    this.ui.notify(`Left ${droppedGuns} guns behind because of excess weight`, 'negative');
+  if (droppedBounties) {
+    this.ui.notify(`Left ${droppedBounties} hacker bounties behind because of excess weight`, 'negative');
   }
 
   while (this.soylent && this.capacity <= this.weight) {
@@ -79,7 +79,7 @@ OregonH.Caravan.updateWeight = function updateWeight() {
   }
 
   if (droppedSoylent) {
-    this.ui.notify(`Left ${droppedSoylent} soylent provisions behind`, 'negative');
+    this.ui.notify(`Left ${droppedSoylent} soylent provisions stolen by hackers`, 'negative');
   }
 };
 

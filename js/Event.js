@@ -11,7 +11,7 @@ OregonH.Event.eventTypes = [
     notification: 'negative',
     stat: 'devs',
     value: -3,
-    text: 'Soylent intoxication. Casualties: ',
+    text: 'Soylent was expired. Dev casualties: ',
   },
   {
     type: 'STAT-CHANGE',
@@ -25,14 +25,14 @@ OregonH.Event.eventTypes = [
     notification: 'negative',
     stat: 'soylent',
     value: -10,
-    text: 'Worm infestation. Soylent lost: ',
+    text: 'Devs stayed up late playing video games. Soylent lost: ',
   },
   {
     type: 'STAT-CHANGE',
     notification: 'negative',
     stat: 'money',
     value: -50,
-    text: 'Pick pockets steal $',
+    text: 'SaaS company charges you $',
   },
   {
     type: 'STAT-CHANGE',
@@ -69,7 +69,7 @@ OregonH.Event.eventTypes = [
     products: [
       { item: 'soylent', qty: 20, price: 50 },
       { item: 'servers', qty: 1, price: 200 },
-      { item: 'firepower', qty: 2, price: 50 },
+      { item: 'hackerbounties', qty: 2, price: 50 },
       { item: 'devs', qty: 5, price: 80 },
     ],
   },
@@ -80,7 +80,7 @@ OregonH.Event.eventTypes = [
     products: [
       { item: 'soylent', qty: 30, price: 50 },
       { item: 'servers', qty: 1, price: 200 },
-      { item: 'firepower', qty: 2, price: 20 },
+      { item: 'hackerbounties', qty: 2, price: 20 },
       { item: 'devs', qty: 10, price: 80 },
     ],
   },
@@ -91,24 +91,24 @@ OregonH.Event.eventTypes = [
     products: [
       { item: 'soylent', qty: 20, price: 60 },
       { item: 'servers', qty: 1, price: 300 },
-      { item: 'firepower', qty: 2, price: 80 },
+      { item: 'hackerbounties', qty: 2, price: 80 },
       { item: 'devs', qty: 5, price: 60 },
     ],
   },
   {
     type: 'ATTACK',
     notification: 'negative',
-    text: 'Bandits are hacking you',
+    text: 'Hackers are hacking you',
   },
   {
     type: 'ATTACK',
     notification: 'negative',
-    text: 'Bandits are hacking you',
+    text: 'Hackers are hacking you',
   },
   {
     type: 'ATTACK',
     notification: 'negative',
-    text: 'Bandits are hacking you',
+    text: 'Hackers are hacking you',
   },
 ];
 
@@ -179,8 +179,8 @@ OregonH.Event.shopEvent = function shopEvent(eventData) {
 
 // prepare an attack event
 OregonH.Event.attackEvent = function attackEvent() {
-  const firepower = Math.round((0.7 + 0.6 * Math.random()) * OregonH.ENEMY_FIREPOWER_AVG);
+  const hackerbounties = Math.round((0.7 + 0.6 * Math.random()) * OregonH.ENEMY_HACKERBOUNTIES_AVG);
   const gold = Math.round((0.7 + 0.6 * Math.random()) * OregonH.ENEMY_GOLD_AVG);
 
-  this.ui.showAttack(firepower, gold);
+  this.ui.showAttack(hackerbounties, gold);
 };

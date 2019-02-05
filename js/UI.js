@@ -15,7 +15,7 @@ OregonH.UI.notify = function notify(message, type) {
 OregonH.UI.refreshStats = function refreshStats() {
   // Destructure some objects for easy access
   const {
-    day, distance, devs, servers, soylent, money, firepower, weight, capacity,
+    day, distance, devs, servers, soylent, money, hackerbounties, weight, capacity,
   } = this.caravan;
   const { ceil, floor } = Math;
 
@@ -25,8 +25,8 @@ OregonH.UI.refreshStats = function refreshStats() {
   document.getElementById('stat-devs').innerHTML = `${devs}`;
   document.getElementById('stat-servers').innerHTML = `${servers}`;
   document.getElementById('stat-soylent').innerHTML = `${ceil(soylent)}`;
-  document.getElementById('stat-money').innerHTML = `${money}`;
-  document.getElementById('stat-firepower').innerHTML = `${firepower}`;
+  document.getElementById('stat-money').innerHTML = `$${money}`;
+  document.getElementById('stat-hackerbounties').innerHTML = `${hackerbounties}`;
   document.getElementById('stat-weight').innerHTML = `${ceil(weight)}/${capacity}`;
 
   // update caravan position
@@ -34,21 +34,21 @@ OregonH.UI.refreshStats = function refreshStats() {
 };
 
 // show attack
-OregonH.UI.showAttack = function showAttack(firepower, gold) {
+OregonH.UI.showAttack = function showAttack(hackerbounties, gold) {
   const attackDiv = document.getElementById('attack');
   attackDiv.classList.remove('hidden');
 
   // keep properties
-  this.firepower = firepower;
+  this.hackerbounties = hackerbounties;
   this.gold = gold;
 
-  // show firepower
-  document.getElementById('attack-description').innerHTML = `Firepower: ${firepower}`;
+  // show hackerbounties
+  document.getElementById('attack-description').innerHTML = `Pay off cost: ${hackerbounties} hacker bounties`;
 
   // init once
   if (!this.attackInitiated) {
-    // fight
-    document.getElementById('fight').addEventListener('click', this.fight.bind(this));
+    // payoff
+    document.getElementById('payoff').addEventListener('click', this.payoff.bind(this));
 
     // run away
     document.getElementById('runaway').addEventListener('click', this.runaway.bind(this));
@@ -57,24 +57,31 @@ OregonH.UI.showAttack = function showAttack(firepower, gold) {
   }
 };
 
-// fight
-OregonH.UI.fight = function fight() {
-  // console.log('Fight!');
+// payoff
+OregonH.UI.payoff = function payoff() {
+  // console.log('Pay Off!');
+  console.log(this);
 
-  const { firepower, gold } = this;
+  const { hackerbounties, gold } = this;
 
-  // damage can be 0 to 2 * firepower
-  const damage = Math.ceil(Math.max(0, firepower * 2 * Math.random() - this.caravan.firepower));
+  // check we can afford it
+  if (hackerbounties > OregonH.Caravan.hackerbounties) {
+    OregonH.UI.notify('Not enough hacker bounties in the bank', 'negative');
+    return false;
+  }
+
+  // damage can be 0 to 2 * hackerbounties
+  const damage = Math.ceil(Math.max(0, hackerbounties * 2 * Math.random() - this.caravan.hackerbounties));
 
   // check there are survivors
   if (damage < this.caravan.devs) {
     this.caravan.devs -= damage;
     this.caravan.money += gold;
-    this.notify(`${damage} people were killed fighting`, 'negative');
-    this.notify(`Found $ ${gold}`, 'gold');
+    this.notify(`${damage} devs quit for lack of stability and security`, 'negative');
+    this.notify(`Investors reward you with $${gold} for defeating the hacker threat`);
   } else {
     this.caravan.devs = 0;
-    this.notify('Everybody died in the fight', 'negative');
+    this.notify('Everybody quit after the payoff', 'negative');
   }
 
   // resume journey
@@ -86,15 +93,15 @@ OregonH.UI.fight = function fight() {
 OregonH.UI.runaway = function runaway() {
   // console.log('runway!')
 
-  const { firepower } = this;
+  const { hackerbounties } = this;
 
-  // damage can be 0 to firepower / 2
-  const damage = Math.ceil(Math.max(0, firepower * Math.random() / 2));
+  // damage can be 0 to hackerbounties / 2
+  const damage = Math.ceil(Math.max(0, hackerbounties * Math.random() / 2));
 
   // check there are survivors
   if (damage < this.caravan.devs) {
     this.caravan.devs -= damage;
-    this.notify(`${damage} people were killed running`, 'negative');
+    this.notify(`${damage} security devs quit in shame`, 'negative');
   } else {
     this.caravan.devs = 0;
     this.notify('Everybody died running away', 'negative');
