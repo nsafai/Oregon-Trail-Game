@@ -30,18 +30,19 @@ OregonH.UI.refreshStats = function refreshStats() {
   document.getElementById('stat-weight').innerHTML = `${ceil(weight)}/${capacity}`;
 
   // update / move caravan position
-  
+
   percentComplete = (users / OregonH.FINAL_USERS) * 100;
   console.log(`${percentComplete}%`);
   document.getElementById('myBar').style.width = `${percentComplete}%`;
-  // console.log()
-  // TODO: turn into progress bar: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_progressbar_3
 };
 
 // show attack
-OregonH.UI.showAttack = function showAttack(bounties, gold) {
+OregonH.UI.showAttack = function showAttack(bounties, gold, eventData) {
   const attackDiv = document.getElementById('attack');
   attackDiv.classList.remove('hidden');
+
+  const descriptionHeader = document.getElementById('event-description-atk');
+  descriptionHeader.innerHTML = eventData.text;
 
   // keep properties
   this.bounties = bounties;
@@ -121,10 +122,13 @@ OregonH.UI.shutDown = function shutDownServers() {
 };
 
 // show shop
-OregonH.UI.showShop = function showShop(products) {
+OregonH.UI.showShop = function showShop(products, eventData) {
   // get shop area
   const shopDiv = document.getElementById('shop');
   shopDiv.classList.remove('hidden');
+
+  const descriptionHeader = document.getElementById('event-description-shop');
+  descriptionHeader.innerHTML = eventData.text;
 
   // init the shop just once
   if (!this.shopInitiated) {

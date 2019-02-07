@@ -42,17 +42,19 @@
       
       <div id="right-panel">
         <div id="shop" class="hidden">
-            <div id="prods">
-            </div>
-            <button id="leave-btn">Leave shop</button>
+          <h4 id="event-description-shop"></h4>
+          <div id="prods">
           </div>
-          
-          <div id="attack" class="hidden">
-            <div id="attack-description"></div>
-            <button id="payoff">Pay Off</button>
-            <button id="shutdown">Shut Servers Down</button>
-          </div>
-          <div class="updates-area" id="updates-area"></div>
+          <button id="leave-btn">Leave shop</button>
+        </div>
+        
+        <div id="attack" class="hidden">
+          <h4 id="event-description-atk"></h4>
+          <div id="attack-description"></div>
+          <button id="payoff">Pay Off</button>
+          <button id="shutdown">Shut Servers Down</button>
+        </div>
+        <div class="updates-area" id="updates-area"></div>
       </div>
       
     </div>
@@ -71,24 +73,9 @@ Challenges
 5) OOP - Define class Objects for Caravan, Event, Game, and UI
     -->
     
-    <script src="js/Event.js"></script>
+    <script src="js/Event.js"></script> <!-- MUST BE IMPORTED FIRST -->
     <script src="js/Caravan.js"></script>
     <script src="js/UI.js"></script>
     <script src="js/Game.js"></script>
-    <script>
-      function move() {
-        var elem = document.getElementById("myBar"); 
-        var width = 1;
-        var id = setInterval(frame, 10);
-        function frame() {
-          if (width >= 100) {
-            clearInterval(id);
-          } else {
-            width++; 
-            elem.style.width = width + '%'; 
-          }
-        }
-      }
-    </script>
   </body>
 </html>

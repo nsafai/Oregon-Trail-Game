@@ -65,7 +65,7 @@ OregonH.Event.eventTypes = [
   {
     type: 'SHOP',
     notification: 'neutral',
-    text: 'You have found a shop',
+    text: 'You have found a shop. Would you like to buy something?',
     products: [
       { item: 'soylent', qty: 20, price: 50 },
       { item: 'servers', qty: 1, price: 200 },
@@ -76,7 +76,7 @@ OregonH.Event.eventTypes = [
   {
     type: 'SHOP',
     notification: 'neutral',
-    text: 'You have found a shop',
+    text: 'You have found a shop. Would you like to buy something?',
     products: [
       { item: 'soylent', qty: 30, price: 50 },
       { item: 'servers', qty: 1, price: 200 },
@@ -87,7 +87,7 @@ OregonH.Event.eventTypes = [
   {
     type: 'SHOP',
     notification: 'neutral',
-    text: 'Smugglers sell various goods',
+    text: 'Smugglers sell various goods. Would you like to buy something?',
     products: [
       { item: 'soylent', qty: 20, price: 60 },
       { item: 'servers', qty: 1, price: 300 },
@@ -98,17 +98,17 @@ OregonH.Event.eventTypes = [
   {
     type: 'ATTACK',
     notification: 'negative',
-    text: 'Hackers are hacking you',
+    text: 'Hackers are hacking you. What will you do?',
   },
   {
     type: 'ATTACK',
     notification: 'negative',
-    text: 'Hackers are hacking you',
+    text: 'Hackers are hacking you. What will you do?',
   },
   {
     type: 'ATTACK',
     notification: 'negative',
-    text: 'Hackers are hacking you',
+    text: 'Hackers are hacking you. What will you do?',
   },
 ];
 
@@ -174,13 +174,13 @@ OregonH.Event.shopEvent = function shopEvent(eventData) {
     });
   }
 
-  this.ui.showShop(products);
+  this.ui.showShop(products, eventData);
 };
 
 // prepare an attack event
-OregonH.Event.attackEvent = function attackEvent() {
+OregonH.Event.attackEvent = function attackEvent(eventData) {
   const bounties = Math.round((0.7 + 0.6 * Math.random()) * OregonH.ENEMY_bounties_AVG);
   const gold = Math.round((0.7 + 0.6 * Math.random()) * OregonH.ENEMY_GOLD_AVG);
 
-  this.ui.showAttack(bounties, gold);
+  this.ui.showAttack(bounties, gold, eventData);
 };
