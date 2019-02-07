@@ -1,22 +1,7 @@
 // Caravan.js
 
 // eslint-disable-next-line no-var
-var OregonH = OregonH || {};
-
-// constants
-OregonH.WEIGHT_PER_OX = 20;
-OregonH.WEIGHT_PER_PERSON = 2;
-OregonH.SOYLENT_WEIGHT = 0.6;
-OregonH.bounties_WEIGHT = 5;
-OregonH.GAME_SPEED = 800;
-OregonH.DAY_PER_STEP = 0.2;
-OregonH.SOYLENT_PER_PERSON = 0.02;
-OregonH.FULL_SPEED = 5;
-OregonH.SLOW_SPEED = 3;
-OregonH.FINAL_USERS = 1000;
-OregonH.EVENT_PROBABILITY = 0.15;
-OregonH.ENEMY_bounties_AVG = 5;
-OregonH.ENEMY_GOLD_AVG = 50;
+// var OregonH = OregonH || {};
 
 OregonH.Game = {};
 OregonH.Caravan = {};

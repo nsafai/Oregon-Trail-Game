@@ -12,12 +12,16 @@
     <link rel="stylesheet" href="css/style.css"/>
   </head>
   <body>
-    <h1>Silicon Valley</h1>
-    <h4>A totally accurate simulation of entrepeneurial life in the Silicon Valley.</h4>
-    <div id="home"></div>
-    <div id="journey">
+    <div id="header">
+      <h1 id="page-title">Silicon Valley Trail</h1>
+      <h4 id="sub-header">A totally accurate simulation of entrepeneurial life in the Silicon Valley.</h4>
+      <hr>
+    </div>
+
+    <div id="game">
      
-      <div id="stats-area">
+      <div id="left-panel">
+        <h3 id="header-title">Company KPIs</h5>
         <div class="stat">Day <span id="stat-day" class="stat-value"></span></div>
         <div class="stat">Users <span id="stat-users" class="stat-value"></span></div>
         <div class="stat">Devs <span id="stat-devs" class="stat-value"></span></div>
@@ -27,28 +31,31 @@
         <div class="stat">Hacker Bounties <span id="stat-bounties" class="stat-value"></span></div>
         <div class="stat">Weight <span id="stat-weight" class="stat-value"></span><span id="stat-capacity" class="stat-value"></span></div>
       </div>
-      
-      <div class="updates-area" id="updates-area"></div>
-      
-      <div id="shop" class="hidden">
-        <div id="prods">
+
+      <div id="center-panel">
+        <h4 id="progress-text">Progress towards Series A</h4>
+        <div id="myProgress">
+          <div id="myBar"></div>
         </div>
-        <button>Leave shop</button>
+        <img id="gif" src="images/sv-office-coding.gif" />
       </div>
       
-      <div id="attack" class="hidden">
-        <div id="attack-description"></div>
-        <button id="payoff">Pay Off</button>
-        <button id="runaway">Run away</button>
+      <div id="right-panel">
+        <div id="shop" class="hidden">
+            <div id="prods">
+            </div>
+            <button id="leave-btn">Leave shop</button>
+          </div>
+          
+          <div id="attack" class="hidden">
+            <div id="attack-description"></div>
+            <button id="payoff">Pay Off</button>
+            <button id="shutdown">Shut Servers Down</button>
+          </div>
+          <div class="updates-area" id="updates-area"></div>
       </div>
       
-      <div id="progress-area">
-        <img id="caravan" src="images/Wagon.png" />
-        <img id="trees" src="images/Trees.png" />
-      </div>
     </div>
- 
-    <div id="event"></div>
     
     <!-- 
 Challenges 
@@ -68,5 +75,20 @@ Challenges
     <script src="js/Caravan.js"></script>
     <script src="js/UI.js"></script>
     <script src="js/Game.js"></script>
+    <script>
+      function move() {
+        var elem = document.getElementById("myBar"); 
+        var width = 1;
+        var id = setInterval(frame, 10);
+        function frame() {
+          if (width >= 100) {
+            clearInterval(id);
+          } else {
+            width++; 
+            elem.style.width = width + '%'; 
+          }
+        }
+      }
+    </script>
   </body>
 </html>

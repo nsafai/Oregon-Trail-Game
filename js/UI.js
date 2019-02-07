@@ -2,7 +2,7 @@
 // UI.js
 
 // eslint-disable-next-line no-var
-var OregonH = OregonH || {};
+// var OregonH = OregonH || {};
 
 OregonH.UI = {};
 
@@ -30,7 +30,11 @@ OregonH.UI.refreshStats = function refreshStats() {
   document.getElementById('stat-weight').innerHTML = `${ceil(weight)}/${capacity}`;
 
   // update / move caravan position
-  document.getElementById('caravan').style.left = `${(380 * users / OregonH.FINAL_USERS)}px`;
+  
+  percentComplete = (users / OregonH.FINAL_USERS) * 100;
+  console.log(`${percentComplete}%`);
+  document.getElementById('myBar').style.width = `${percentComplete}%`;
+  // console.log()
   // TODO: turn into progress bar: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_progressbar_3
 };
 
@@ -51,8 +55,8 @@ OregonH.UI.showAttack = function showAttack(bounties, gold) {
     // payoff
     document.getElementById('payoff').addEventListener('click', this.payoff.bind(this));
 
-    // run away
-    document.getElementById('runaway').addEventListener('click', this.runaway.bind(this));
+    // shut servers down
+    document.getElementById('shutdown').addEventListener('click', this.shutDown.bind(this));
 
     this.attackInitiated = true;
   }
@@ -90,8 +94,8 @@ OregonH.UI.payoff = function payoff() {
   this.game.resumeJourney();
 };
 
-// runing away from enemy
-OregonH.UI.runaway = function runaway() {
+// shutdown servers to counter hackers 
+OregonH.UI.shutDown = function shutDownServers() {
   // console.log('runway!')
 
   const { bounties } = this;
@@ -109,7 +113,7 @@ OregonH.UI.runaway = function runaway() {
   }
 
   // remove event listener
-  // document.getElementById('runaway').removeEventListener('click', this.runaway);
+  // document.getElementById('shutDown').removeEventListener('click', this.shutDown);
 
   // resume journey
   document.getElementById('attack').classList.add('hidden');
