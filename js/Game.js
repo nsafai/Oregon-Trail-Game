@@ -8,15 +8,15 @@ var OregonH = OregonH || {};
 OregonH.WEIGHT_PER_OX = 20;
 OregonH.WEIGHT_PER_PERSON = 2;
 OregonH.SOYLENT_WEIGHT = 0.6;
-OregonH.HACKERBOUNTIES_WEIGHT = 5;
+OregonH.bounties_WEIGHT = 5;
 OregonH.GAME_SPEED = 800;
 OregonH.DAY_PER_STEP = 0.2;
 OregonH.SOYLENT_PER_PERSON = 0.02;
 OregonH.FULL_SPEED = 5;
 OregonH.SLOW_SPEED = 3;
-OregonH.FINAL_DISTANCE = 1000;
+OregonH.FINAL_USERS = 1000;
 OregonH.EVENT_PROBABILITY = 0.15;
-OregonH.ENEMY_HACKERBOUNTIES_AVG = 5;
+OregonH.ENEMY_bounties_AVG = 5;
 OregonH.ENEMY_GOLD_AVG = 50;
 
 OregonH.Game = {};
@@ -33,12 +33,12 @@ OregonH.Game.init = function init() {
   this.caravan = OregonH.Caravan;
   this.caravan.init({
     day: 0,
-    distance: 0,
+    users: 0,
     devs: 30,
     soylent: 80,
     servers: 2,
     money: 300,
-    hackerbounties: 2,
+    bounties: 2,
   });
 
   // pass references
@@ -107,7 +107,7 @@ OregonH.Game.updateGame = function updateGame() {
   this.caravan.updateWeight();
 
   // update progress
-  this.caravan.updateDistance();
+  this.caravan.updateUsers();
 
   // show stats
   this.ui.refreshStats();
@@ -121,7 +121,7 @@ OregonH.Game.updateGame = function updateGame() {
   }
 
   // check win game
-  if (this.caravan.distance >= OregonH.FINAL_DISTANCE) {
+  if (this.caravan.users >= OregonH.FINAL_USERS) {
     this.ui.notify('You have returned home!', 'positive');
     this.gameActive = false;
     return;

@@ -15,35 +15,36 @@ OregonH.UI.notify = function notify(message, type) {
 OregonH.UI.refreshStats = function refreshStats() {
   // Destructure some objects for easy access
   const {
-    day, distance, devs, servers, soylent, money, hackerbounties, weight, capacity,
+    day, users, devs, servers, soylent, money, bounties, weight, capacity,
   } = this.caravan;
   const { ceil, floor } = Math;
 
   // modify the dom
   document.getElementById('stat-day').innerHTML = `${ceil(day)}`; // Math.ceil(this.caravan.day);
-  document.getElementById('stat-distance').innerHTML = `${floor(distance)}`;
+  document.getElementById('stat-users').innerHTML = `${floor(users)}`;
   document.getElementById('stat-devs').innerHTML = `${devs}`;
   document.getElementById('stat-servers').innerHTML = `${servers}`;
   document.getElementById('stat-soylent').innerHTML = `${ceil(soylent)}`;
   document.getElementById('stat-money').innerHTML = `$${money}`;
-  document.getElementById('stat-hackerbounties').innerHTML = `${hackerbounties}`;
+  document.getElementById('stat-bounties').innerHTML = `${bounties}`;
   document.getElementById('stat-weight').innerHTML = `${ceil(weight)}/${capacity}`;
 
-  // update caravan position
-  document.getElementById('caravan').style.left = `${(380 * distance / OregonH.FINAL_DISTANCE)}px`;
+  // update / move caravan position
+  document.getElementById('caravan').style.left = `${(380 * users / OregonH.FINAL_USERS)}px`;
+  // TODO: turn into progress bar: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_progressbar_3
 };
 
 // show attack
-OregonH.UI.showAttack = function showAttack(hackerbounties, gold) {
+OregonH.UI.showAttack = function showAttack(bounties, gold) {
   const attackDiv = document.getElementById('attack');
   attackDiv.classList.remove('hidden');
 
   // keep properties
-  this.hackerbounties = hackerbounties;
+  this.bounties = bounties;
   this.gold = gold;
 
-  // show hackerbounties
-  document.getElementById('attack-description').innerHTML = `Pay off cost: ${hackerbounties} hacker bounties`;
+  // show bounties
+  document.getElementById('attack-description').innerHTML = `Pay off cost: ${bounties} hacker bounties`;
 
   // init once
   if (!this.attackInitiated) {
@@ -62,16 +63,16 @@ OregonH.UI.payoff = function payoff() {
   // console.log('Pay Off!');
   console.log(this);
 
-  const { hackerbounties, gold } = this;
+  const { bounties, gold } = this;
 
   // check we can afford it
-  if (hackerbounties > OregonH.Caravan.hackerbounties) {
+  if (bounties > OregonH.Caravan.bounties) {
     OregonH.UI.notify('Not enough hacker bounties in the bank', 'negative');
     return false;
   }
 
-  // damage can be 0 to 2 * hackerbounties
-  const damage = Math.ceil(Math.max(0, hackerbounties * 2 * Math.random() - this.caravan.hackerbounties));
+  // damage can be 0 to 2 * bounties
+  const damage = Math.ceil(Math.max(0, bounties * 2 * Math.random() - this.caravan.bounties));
 
   // check there are survivors
   if (damage < this.caravan.devs) {
@@ -93,10 +94,10 @@ OregonH.UI.payoff = function payoff() {
 OregonH.UI.runaway = function runaway() {
   // console.log('runway!')
 
-  const { hackerbounties } = this;
+  const { bounties } = this;
 
-  // damage can be 0 to hackerbounties / 2
-  const damage = Math.ceil(Math.max(0, hackerbounties * Math.random() / 2));
+  // damage can be 0 to bounties / 2
+  const damage = Math.ceil(Math.max(0, bounties * Math.random() / 2));
 
   // check there are survivors
   if (damage < this.caravan.devs) {

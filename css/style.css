@@ -1,8 +1,20 @@
+:root {
+  --light-blue: #34ace0;
+  --mid-blue: #227093;
+  --dark-blue: #192a56;
+  --light-grey: #f7f1e3;
+  --mid-grey: #aaa69d;
+  --light-orange: #ff793f;
+  --light-red: #cd6133;
+  --dark-red: #b33939;
+}
+
 html {
   height: 100%;
 }
  
 body {
+  background-color: var(--dark-blue);
   padding: 0;
   margin: 0;
   border: 0;
@@ -10,6 +22,14 @@ body {
   overflow: hidden;
   font-family: Helvetica;
   font-size: 18px;
+  padding:1em;
+  display:flex;
+  flex-direction: column;
+  justify-content:center;
+}
+
+h1, h4 {
+  color: var(--light-grey);
 }
  
 .hidden {
@@ -22,13 +42,13 @@ body {
  
 #journey {
   height: 100%;
-  background-color: rgb(80, 140, 230);
 }
  
 #event {
   background-color: magenta;
 }
  
+/* TODO: replace progress area */
 #progress-area {
   float: left;
   position: relative;

@@ -69,7 +69,7 @@ OregonH.Event.eventTypes = [
     products: [
       { item: 'soylent', qty: 20, price: 50 },
       { item: 'servers', qty: 1, price: 200 },
-      { item: 'hackerbounties', qty: 2, price: 50 },
+      { item: 'bounties', qty: 2, price: 50 },
       { item: 'devs', qty: 5, price: 80 },
     ],
   },
@@ -80,7 +80,7 @@ OregonH.Event.eventTypes = [
     products: [
       { item: 'soylent', qty: 30, price: 50 },
       { item: 'servers', qty: 1, price: 200 },
-      { item: 'hackerbounties', qty: 2, price: 20 },
+      { item: 'bounties', qty: 2, price: 20 },
       { item: 'devs', qty: 10, price: 80 },
     ],
   },
@@ -91,7 +91,7 @@ OregonH.Event.eventTypes = [
     products: [
       { item: 'soylent', qty: 20, price: 60 },
       { item: 'servers', qty: 1, price: 300 },
-      { item: 'hackerbounties', qty: 2, price: 80 },
+      { item: 'bounties', qty: 2, price: 80 },
       { item: 'devs', qty: 5, price: 60 },
     ],
   },
@@ -179,8 +179,8 @@ OregonH.Event.shopEvent = function shopEvent(eventData) {
 
 // prepare an attack event
 OregonH.Event.attackEvent = function attackEvent() {
-  const hackerbounties = Math.round((0.7 + 0.6 * Math.random()) * OregonH.ENEMY_HACKERBOUNTIES_AVG);
+  const bounties = Math.round((0.7 + 0.6 * Math.random()) * OregonH.ENEMY_bounties_AVG);
   const gold = Math.round((0.7 + 0.6 * Math.random()) * OregonH.ENEMY_GOLD_AVG);
 
-  this.ui.showAttack(hackerbounties, gold);
+  this.ui.showAttack(bounties, gold);
 };
