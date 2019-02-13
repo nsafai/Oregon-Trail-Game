@@ -4,7 +4,7 @@
 // eslint-disable-next-line no-var
 
 // constants
-OregonH.WEIGHT_PER_OX = 20;
+OregonH.SERVER_LOAD = 20;
 OregonH.WEIGHT_PER_PERSON = 2;
 OregonH.SOYLENT_WEIGHT = 0.6;
 OregonH.bounties_WEIGHT = 5;
@@ -29,8 +29,7 @@ OregonH.Game.init = function init() {
   this.eventManager = OregonH.Event;
 
   // setup caravan
-  this.caravan = OregonH.Caravan;
-  this.caravan.init({
+  this.caravan = new Caravan({
     day: 0,
     users: 0,
     devs: 30,

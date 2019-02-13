@@ -127,9 +127,10 @@ body {
   margin: 5px;
 }
  
-#shop button {
+#shop button, #attack button {
   clear: both;
   margin: 5px;
+  /* margon-b */
 }
  
 #attack {

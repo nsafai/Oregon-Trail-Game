@@ -6,6 +6,9 @@
 
 OregonH.UI = {};
 
+// -----------------------------------
+// -----------------------------------
+
 // show a notification in the message area
 OregonH.UI.notify = function notify(message, type) {
   document.getElementById('updates-area').innerHTML = `<div class="update-${type}">Day ${Math.ceil(this.caravan.day)}: ${message}</div> ${document.getElementById('updates-area').innerHTML}`;
