@@ -90,7 +90,7 @@ class UI {
 
     // resume journey
     document.getElementById('attack').classList.add('hidden');
-    this.game.resumeJourney();
+    return this.game.resumeJourney();
   }
 
   // shutdown servers to counter hackers
