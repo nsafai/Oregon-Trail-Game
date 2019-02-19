@@ -74,7 +74,7 @@ class Event {
   }
 
   attackEvent(eventData) {
-    const bounties = Math.round((0.7 + 0.6 * Math.random()) * OregonH.ENEMY_bounties_AVG);
+    const bounties = Math.round((0.2 + 0.2 * Math.random()) * OregonH.ENEMY_bounties_AVG);
     const gold = Math.round((0.7 + 0.6 * Math.random()) * OregonH.ENEMY_GOLD_AVG);
 
     this.ui.showAttack(bounties, gold, eventData);
@@ -100,7 +100,7 @@ const eventTypes = [
     type: 'STAT-CHANGE',
     notification: 'negative',
     stat: 'soylent',
-    value: -10,
+    value: -100,
     text: 'Devs stayed up late playing video games. Soylent lost: ',
   },
   {
@@ -121,14 +121,14 @@ const eventTypes = [
     type: 'STAT-CHANGE',
     notification: 'positive',
     stat: 'soylent',
-    value: 20,
+    value: 100,
     text: 'Found wild soylent mix and a creek. Soylent added: ',
   },
   {
     type: 'STAT-CHANGE',
     notification: 'positive',
     stat: 'soylent',
-    value: 20,
+    value: 160,
     text: 'Amazon delivery. Soylent added: ',
   },
   {
@@ -143,7 +143,7 @@ const eventTypes = [
     notification: 'neutral',
     text: 'You have found a shop. Would you like to buy something?',
     products: [
-      { item: 'soylent', qty: 20, price: 50 },
+      { item: 'soylent', qty: 160, price: 50 },
       { item: 'servers', qty: 1, price: 200 },
       { item: 'bounties', qty: 2, price: 50 },
       { item: 'devs', qty: 5, price: 80 },
@@ -154,7 +154,7 @@ const eventTypes = [
     notification: 'neutral',
     text: 'You have found a shop. Would you like to buy something?',
     products: [
-      { item: 'soylent', qty: 30, price: 50 },
+      { item: 'soylent', qty: 130, price: 50 },
       { item: 'servers', qty: 1, price: 200 },
       { item: 'bounties', qty: 2, price: 20 },
       { item: 'devs', qty: 10, price: 80 },
@@ -165,7 +165,7 @@ const eventTypes = [
     notification: 'neutral',
     text: 'Smugglers sell various goods. Would you like to buy something?',
     products: [
-      { item: 'soylent', qty: 20, price: 60 },
+      { item: 'soylent', qty: 120, price: 60 },
       { item: 'servers', qty: 1, price: 300 },
       { item: 'bounties', qty: 2, price: 80 },
       { item: 'devs', qty: 5, price: 60 },
