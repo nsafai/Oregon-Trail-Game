@@ -1,8 +1,3 @@
-<!-- 
-  https://gamedevacademy.org/js13kgames-tutorial/
-  
-  Game from the tutorial based on Oregon Trail
--->
 <!DOCTYPE html>
 <html>
   <head>
@@ -57,10 +52,21 @@
       </div>
       
     </div>
+
+    <!-- DO NOT RE-ORDER JS FILES BELOW -->
+
+    <!-- 1) IMPORT CONSTANTS -->
+    <script src="js/Constants.js"></script> 
     
-    <script src="js/Event.js"></script> <!-- MUST BE IMPORTED FIRST -->
+    <!-- 2) IMPORT CLASSES -->
+    <script src="js/Event.js"></script> 
     <script src="js/Caravan.js"></script>
     <script src="js/UI.js"></script>
     <script src="js/Game.js"></script>
+
+    <!-- 3) INIT GAME -->
+    <script src="js/Init.js"></script> 
+
+    <!-- DO NOT RE-ORDER JS FILES ABOVE -->
   </body>
 </html>

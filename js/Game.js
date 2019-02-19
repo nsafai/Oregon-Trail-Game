@@ -1,19 +1,8 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 // Game.js
 
 // eslint-disable-next-line no-var
-
-// constants
-OregonH.SERVER_LOAD = 20;
-OregonH.GAME_SPEED = 800;
-OregonH.DAY_PER_STEP = 0.2;
-OregonH.SOYLENT_PER_PERSON = 0.2;
-OregonH.FULL_SPEED = 5;
-OregonH.SLOW_SPEED = 2;
-OregonH.FINAL_USERS = 1000;
-OregonH.EVENT_PROBABILITY = 0.15;
-OregonH.ENEMY_bounties_AVG = 5;
-OregonH.ENEMY_GOLD_AVG = 50;
 
 class Game {
   constructor() {
@@ -25,7 +14,7 @@ class Game {
     this.ui = new UI();
 
     // reference event manager
-    this.eventManager = OregonH.Event;
+    this.eventManager = new Event(eventTypes);
 
     // setup caravan
     this.caravan = new Caravan({
@@ -138,5 +127,3 @@ class Game {
     this.step();
   }
 }
-
-OregonH.Game = new Game();

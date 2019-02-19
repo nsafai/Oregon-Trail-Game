@@ -3,20 +3,14 @@
 /* eslint-disable no-undef */
 // Caravan.js
 
-// eslint-disable-next-line no-var
-// var OregonH = OregonH || {};
-
-OregonH.Game = {};
-OregonH.Caravan = {};
-
-// ----------------------------------------
-
 class Caravan {
   constructor(stats) {
     this.init(stats);
   }
 
-  init({ day, users, devs, soylent, servers, money, bounties }) {
+  init({
+    day, users, devs, soylent, servers, money, bounties,
+  }) {
     this.day = day;
     this.users = users;
     this.devs = devs;
@@ -24,10 +18,6 @@ class Caravan {
     this.servers = servers;
     this.money = money;
     this.bounties = bounties;
-
-    // for (let key in stats) {
-    //   this[key] = stats[key]
-    // }
   }
 
   updateUsers() {

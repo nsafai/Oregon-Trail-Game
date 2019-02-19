@@ -111,9 +111,6 @@ class UI {
       this.notify('Everybody died running away', 'negative');
     }
 
-    // remove event listener
-    // document.getElementById('shutDown').removeEventListener('click', this.shutDown);
-
     // resume journey
     document.getElementById('attack').classList.add('hidden');
     this.game.resumeJourney();

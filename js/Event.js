@@ -1,7 +1,6 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 // Event.js
-
-// eslint-disable-next-line no-var
-var OregonH = OregonH || {};
 
 class Event {
   constructor(eventTypes) {
@@ -74,7 +73,7 @@ class Event {
   }
 
   attackEvent(eventData) {
-    const bounties = Math.round((0.2 + 0.2 * Math.random()) * OregonH.ENEMY_bounties_AVG);
+    const bounties = Math.round((0.5 + 0.5 * Math.random()) * OregonH.ENEMY_bounties_AVG);
     const gold = Math.round((0.7 + 0.6 * Math.random()) * OregonH.ENEMY_GOLD_AVG);
 
     this.ui.showAttack(bounties, gold, eventData);
@@ -145,7 +144,7 @@ const eventTypes = [
     products: [
       { item: 'soylent', qty: 160, price: 50 },
       { item: 'servers', qty: 1, price: 200 },
-      { item: 'bounties', qty: 2, price: 50 },
+      { item: 'bounties', qty: 2, price: 100 },
       { item: 'devs', qty: 5, price: 80 },
     ],
   },
@@ -156,7 +155,7 @@ const eventTypes = [
     products: [
       { item: 'soylent', qty: 130, price: 50 },
       { item: 'servers', qty: 1, price: 200 },
-      { item: 'bounties', qty: 2, price: 20 },
+      { item: 'bounties', qty: 2, price: 120 },
       { item: 'devs', qty: 10, price: 80 },
     ],
   },
@@ -167,7 +166,7 @@ const eventTypes = [
     products: [
       { item: 'soylent', qty: 120, price: 60 },
       { item: 'servers', qty: 1, price: 300 },
-      { item: 'bounties', qty: 2, price: 80 },
+      { item: 'bounties', qty: 2, price: 180 },
       { item: 'devs', qty: 5, price: 60 },
     ],
   },
@@ -187,5 +186,3 @@ const eventTypes = [
     text: 'Hackers are hacking you. What will you do?',
   },
 ];
-
-OregonH.Event = new Event(eventTypes);
