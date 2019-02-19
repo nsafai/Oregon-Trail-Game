@@ -2,7 +2,7 @@
  This game is a classic text adventure game: Oregon Trail. 
 
 ## How to run
-Because this is written entirely in vanilla HTML/CSS/JS, you can simply download the project and open the index.html project to run this game.
+Because this is written entirely in vanilla HTML/CSS/JS, you can simply download the project and open the `index.html` file to run this game.
 
 ## Credits
 This was largely inspired from [this tutorial](https://gamedevacademy.org/js13kgames-tutorial/) and this [starter project](https://github.com/soggybag/adventure-0-starter)

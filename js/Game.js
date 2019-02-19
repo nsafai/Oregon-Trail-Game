@@ -5,12 +5,9 @@
 
 // constants
 OregonH.SERVER_LOAD = 20;
-OregonH.WEIGHT_PER_PERSON = 2;
-OregonH.SOYLENT_WEIGHT = 0.6;
-OregonH.bounties_WEIGHT = 5;
 OregonH.GAME_SPEED = 800;
 OregonH.DAY_PER_STEP = 0.2;
-OregonH.SOYLENT_PER_PERSON = 0.02;
+OregonH.SOYLENT_PER_PERSON = 0.2;
 OregonH.FULL_SPEED = 5;
 OregonH.SLOW_SPEED = 3;
 OregonH.FINAL_USERS = 1000;
@@ -23,7 +20,7 @@ OregonH.Game = {};
 // initiate the game
 OregonH.Game.init = function init() {
   // reference ui
-  this.ui = OregonH.UI;
+  this.ui = new UI();
 
   // reference event manager
   this.eventManager = OregonH.Event;
@@ -33,7 +30,7 @@ OregonH.Game.init = function init() {
     day: 0,
     users: 0,
     devs: 30,
-    soylent: 80,
+    soylent: 1000,
     servers: 2,
     money: 300,
     bounties: 2,
@@ -96,13 +93,11 @@ OregonH.Game.updateGame = function updateGame() {
 
   // game over no soylent
   if (this.caravan.soylent === 0) {
+    document.getElementById('stat-soylent').innerHTML = '0';
     this.ui.notify('Your caravan starved to death', 'negative');
     this.gameActive = false;
     return;
   }
-
-  // update weight
-  this.caravan.updateWeight();
 
   // update progress
   this.caravan.updateUsers();
